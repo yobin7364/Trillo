@@ -342,8 +342,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &__count {}
-    &__friends {}
+    // &__count {}
+    // &__friends {}
     &__photo {
         /*as box-sizing is border-box from universal selector which makes the size of image to shrink
         when border is added as border-box makes the total size containing the border also.So content-box
@@ -414,5 +414,73 @@
         font-size: 20rem;
         color: var(--color-grey-light-2);
         font-family: sans-serif;
+    }
+}
+
+///////////////////////////////
+//call to action
+.cta {
+    padding: 3.5rem 0;
+    text-align: center;
+    &__book-now {
+        font-size: 1.5rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+    }
+}
+
+///////////////////////////////
+//call to action button
+.btn {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 100px;
+    border: none;
+    background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+    color: #fff;
+    //hand pointer
+    cursor: pointer;
+    position: relative;
+    //to make the overflowed invisible part hidden
+    overflow: hidden;
+    &__visible {
+        //Since span is inline element so padding doesnot work
+        display: inline-block;
+        padding: 2rem 7.5rem;
+        //make same size to its parent element
+        height: 100%;
+        width: 100%;
+        transition: all .2s;
+    }
+    &__invisible {
+        //as it has to move out of normal flow
+        position: absolute;
+        display: inline-block;
+        padding: 2rem 0;
+        //making height and width 100% makes this element exactly same size of its parent i.e. .btn element
+        height: 100%;
+        width: 100%;
+        left: 0;
+        /*makes this element to move up exactly with same height of its parent element .btn
+        i.e. if parent 10px is moves 10px up*/
+        top: -100%;
+        transition: all .2s;
+    }
+    //makes hover effecr on visible span element
+    &:hover &__visible {
+        transform: translateY(100%);
+    }
+    &:hover &__invisible {
+        top: 0;
+    }
+    //transition doesnot work for bg-image
+    &:hover {
+        background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    }
+    &:focus {
+        outline: none;
+        animation: pulsate 1s infinite;
     }
 }
