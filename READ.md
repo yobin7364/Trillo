@@ -1,0 +1,3 @@
+1. ```icomoon.io for SVG icons```
+2. ```localhost\trillo\index.html for running html```
+3. ```css-tricks.com for html symbols like &copy and content atrribute value for before pseudo element```

@@ -1,0 +1,59 @@
+.container {
+    max-width: 120rem;
+    margin: 8rem auto;
+    background-color: var(--color-grey-light-2);
+    box-shadow: var(--dark-shadow);
+    min-height: 50rem;
+}
+
+.header {
+    font-size: 1.4rem;
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+}
+
+.sidebar {
+    background-color: var(--color-grey-dark-1);
+    /*This means sidebar width is 18% out of total width of its parent container.No grow if there is enought space
+    and no shrink if there is not enough space.18% means it shrinks accoring to space.*/
+    flex: 0 0 18%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hotel-view {
+    background-color: white;
+    //This means it occupies the remaining all space i.e. 82% remaining(100% - 18%)
+    flex: 1;
+}
+
+.detail {
+    display: flex;
+    padding: 4.5rem;
+    background-color: var(--color-grey-light-1);
+    border-bottom: var(--line);
+}
+
+.description {
+    background-color: white;
+    margin-right: 4.5rem;
+    box-shadow: var(--light-shadow);
+    flex: 0 0 60%;
+    padding: 3rem;
+    font-size: 1.4rem;
+}
+
+.user-reviews {
+    background-color: yellowgreen;
+    flex: 1;
+}
