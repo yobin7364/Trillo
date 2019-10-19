@@ -4,6 +4,13 @@
     background-color: var(--color-grey-light-2);
     box-shadow: var(--dark-shadow);
     min-height: 50rem;
+    //normal media query and only screen means that it applies to only screen not applied while printing
+    @media only screen and (max-width: $size-larger) {
+        margin: 0;
+        //since 1rem = 8px, max-width = 120rem becomes 120*8 = 960px not 120*16 = 1920px making margin on container
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 .header {
@@ -14,10 +21,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media only screen and (max-width: $size-smaller) {
+        //wraps the items is no enought space
+        flex-wrap: wrap;
+        //increase header height
+        height: 12rem;
+    }
 }
 
 .content {
+    //puts sidebar and hotel-view elemets side by side
     display: flex;
+    @media only screen and (max-width: $size-medium) {
+        //puts sidebar and hotel-view elemets on column
+        flex-direction: column;
+    }
 }
 
 .sidebar {
@@ -43,6 +61,12 @@
     padding: 4.5rem;
     background-color: var(--color-grey-light-1);
     border-bottom: var(--line);
+    @media only screen and (max-width: $size-medium) {
+        padding: 3rem;
+    }
+    @media only screen and (max-width: $size-small) {
+        flex-direction: column;
+    }
 }
 
 .description {
@@ -51,6 +75,14 @@
     box-shadow: var(--light-shadow);
     flex: 0 0 60%;
     padding: 3rem;
+    @media only screen and (max-width: $size-medium) {
+        padding: 2rem;
+        margin-right: 3rem;
+    }
+    @media only screen and (max-width: $size-small) {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
 }
 
 .user-reviews {

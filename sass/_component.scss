@@ -12,6 +12,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @media only screen and (max-width: $size-smaller) {
+        //default order no of item is zero and higher the no last it becomes
+        order: 1;
+        //100% makes item to take full available width space where as flex:1 all is taken
+        flex: 0 0 100%;
+        //removes round corner of search 
+        background-color: var(--color-grey-light-2);
+    }
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -113,9 +121,19 @@
     font-size: 1.4rem;
     list-style: none;
     margin-top: 3.5rem;
+    @media only screen and (max-width: $size-medium) {
+        display: flex;
+        margin: 0;
+        flex: 1;
+    }
     &__item {
         position: relative;
         margin-bottom: .3rem;
+        @media only screen and (max-width: $size-medium) {
+            /*flex is an item property and 1 means it grows as much space that it can get and all items have
+            same flex growth number so all will have same size*/
+            flex: 1;
+        }
     }
     &__item::before {
         content: '';
@@ -137,6 +155,7 @@
     &__item:hover::before {
         transform: scaleY(1);
         width: 100%;
+        flex: 1;
     }
     //active means while clicking
     &__item:active::before {
@@ -154,6 +173,16 @@
             //z-index works for relative position
             position: relative;
             z-index: 10;
+            //centers link items 
+            @media only screen and (max-width: $size-medium) {
+                justify-content: center;
+                padding: 2rem;
+            }
+            //put icon above of link in nav bar
+            @media only screen and (max-width: $size-small) {
+                flex-direction: column;
+                padding: 1.5rem .5rem;
+            }
         }
     }
     &__icon {
@@ -162,6 +191,11 @@
         margin-right: 2rem;
         //currentColor uses current or its parent color
         fill: currentColor;
+        @media only screen and (max-width: $size-small) {
+            margin: auto;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }
 
@@ -172,6 +206,10 @@
     text-align: center;
     padding: 2.5rem;
     color: var(--color-grey-light-4);
+    //remove legal text at max-width = 900px
+    @media only screen and (max-width: $size-medium) {
+        display: none;
+    }
 }
 
 ///////////////////////////////
@@ -198,6 +236,10 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+        @media only screen and (max-width: $size-small) {
+            font-size: 1.75rem;
+            padding: 1.25rem 2rem;
+        }
     }
     &__stars {
         //used with flex so that this element moves towards left and makes margin towards its right elements
@@ -230,15 +272,24 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        @media only screen and (max-width: $size-small) {
+            padding: 0 1.5rem;
+        }
     }
     &__rating-average {
         font-size: 2.5rem;
         font-weight: 300;
         margin-bottom: -3px;
+        @media only screen and (max-width: $size-small) {
+            font-size: 1.8rem;
+        }
     }
     &__rating-count {
         font-size: .8rem;
         text-transform: uppercase;
+        @media only screen and (max-width: $size-small) {
+            font-size: .5rem;
+        }
     }
 }
 
@@ -320,17 +371,26 @@
         width: 1rem;
         margin-right: .7rem;
         //Older browser bg-img is used for icon but we cannot give color to it
-        // background-image: url(../img/chevron-thin-right.svg);
+        background-image: url(../img/chevron-thin-right.svg);
         //it helps to show all image
-        // background-size: cover;
+        background-size: cover;
         /*For new browsers : Mask is usde and mask-image make the icon transparent and bg-color is seen
         For SVG icon in css to use sprite.svg cannot be used.Mask is used here to apply SVG icon to all
         the list items*/
-        background-color: var(--color-primary);
-        -webkit-mask-image: url(../img/chevron-thin-right.svg);
-        -webkit-mask-size: cover;
-        mask-image: url(../img/chevron-thin-right.svg);
-        mask-size: cover;
+        /*supports is used to check if the mentioned properties are supported by the browser or not
+        if supported properties mentioned below it are applied else not and both prefied and non prefixed
+        properties are used for condition with values empty*/
+        //this is feature query
+        @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+            background-color: var(--color-primary);
+            //prefixed properties always at beggining
+            -webkit-mask-image: url(../img/chevron-thin-right.svg);
+            -webkit-mask-size: cover;
+            mask-image: url(../img/chevron-thin-right.svg);
+            mask-size: cover;
+            //removes bg-img
+            background-image: none;
+        }
     }
 }
 
@@ -342,7 +402,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // &__count {}
+    @media only screen and (max-width: $size-medium) {
+        flex-direction: column;
+    }
+    // &__count {
+    //     // @media only screen and (max-width: $size-medium) {
+    //     //     flex: 0 0 100%;
+    //     // }
+    // }
     // &__friends {}
     &__photo {
         /*as box-sizing is border-box from universal selector which makes the size of image to shrink
@@ -355,7 +422,7 @@
         border: 3px solid #fff;
         &:not(:last-child) {
             //negative marigin helps overlap with right element
-            margin-right: -1.5rem;
+            margin-right: -2rem;
         }
     }
 }
@@ -370,6 +437,10 @@
     position: relative;
     //exceeding quote is hidden 
     overflow: hidden;
+    @media only screen and (max-width: $size-medium) {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
     &__text {
         margin-bottom: 2rem;
         //for z-index use relative postion
@@ -422,6 +493,9 @@
 .cta {
     padding: 3.5rem 0;
     text-align: center;
+    @media only screen and (max-width: $size-medium) {
+        padding: 2.5rem 0;
+    }
     &__book-now {
         font-size: 1.5rem;
         font-weight: 300;

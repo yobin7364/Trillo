@@ -34,6 +34,12 @@ Grey dark 3: #999
     --line: 1px solid var(--color-grey-light-2);
 }
 
+//sass variable is used for the media query variable
+$size-larger:75em; // 1200px, em for media query
+$size-large:68.75em; // 1100px;
+$size-medium:56.25em; // 900/16 = 56.25em
+$size-small:37.5em; // 600/16
+$size-smaller:31.25em; //500px
 * {
     margin: 0;
     padding: 0;
@@ -48,6 +54,9 @@ Grey dark 3: #999
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+    @media only screen and (max-width: $size-large) {
+        font-size: 50%; // rem take this px size, here it is 8px and 1rem =  8px
+    }
 }
 
 body {
